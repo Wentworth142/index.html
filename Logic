@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portal Login</title>
+
+    <style>
+        body {
+            background-color: #f3e5f5;
+            font-family: Arial, sans-serif;
+            color: #b8b8b8;
+        }
+
+        table {
+            border: 2px solid #6e2222;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            margin-top: 50px;
+        }
+
+        thead {
+            background-color: #245224;
+            color: white;
+            text-align: center;
+        }
+
+        h2 {
+            margin: 0;
+            padding: 12px;
+        }
+
+        tbody td {
+            padding: 10px;
+            color: #50685a;
+        }
+
+        input {
+            padding: 7px;
+            border: 1px solid #204e2e;
+            background-color: #f8effa;
+        }
+
+        tfoot td {
+            padding: 10px;
+            text-align: center;
+            color: #2d4e38;
+        }
+
+        input[type="submit"] {
+            background-color: #00d111;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 8px 16px;
+        }
+
+        input[type="reset"] {
+            background-color: #15ff00;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 8px 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form>
+
+        <table align="center">
+
+            <thead>
+                <tr>
+                    <td colspan="2">
+                        <h2>Portal Login</h2>
+                    </td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="username">Username:</label>
+                    </td>
+                    <td>
+                        <input type="text"
+                               id="username"
+                               name="username"
+                               placeholder="Enter Username">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="password">Password:</label>
+                    </td>
+                    <td>
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               placeholder="Enter Password">
+                    </td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Submit">
+                        <input type="reset" value="Reset">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        Created by: Wentworth Dale Cambel 12-COOPER
+                    </td>
+                </tr>
+            </tfoot>
+
+        </table>
+
+    </form>
+<p><a href="portfolio.html">Home</a></p>
+</body>
+</html>
