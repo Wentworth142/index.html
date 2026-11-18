@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Von Sorting Game</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0c0202;
+            color: #ff4d4d;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff3333;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        p.subtitle {
+            color: #ff9999;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .items-pool {
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
+            border: 2px dashed #ff3333;
+            border-radius: 12px;
+            padding: 20px;
+            background: rgba(26, 5, 5, 0.6);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            min-height: 120px;
+        }
+
+        .draggable-item {
+            background-color: #990000;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: grab;
+            user-select: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border: 1px solid #ff4d4d;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .draggable-item:hover {
+            background-color: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        .draggable-item:active {
+            cursor: grabbing;
+        }
+
+        .categories-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .category-box {
+            border: 2px dashed #ff3333;
+            border-radius: 12px;
+            padding: 15px;
+            background: rgba(26, 5, 5, 0.6);
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .category-title {
+            color: #ff4d4d;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ff3333;
+            width: 100%;
+            padding-bottom: 8px;
+        }
+
+        .category-drop-zone {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 35px;
+            color: #ff4d4d;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 15px;
+            border: 1px solid #ff3333;
+            padding: 8px 20px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 0, 0, 0.2);
+        }
+
+        @media (max-width: 850px) {
+            .categories-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>King Von Sorting Game</h1>
+    <p class="subtitle">Drag each item into its correct category!</p>
+
+    <!-- POOL OF ITEMS -->
+    <div class="items-pool" id="pool" ondragover="allowDrop(event)" ondrop="dropToPool(event)">
+        <div class="draggable-item" id="item1" draggable="true" ondragstart="drag(event)">Welcome to O'Block</div>
+        <div class="draggable-item" id="item2" draggable="true" ondragstart="drag(event)">Took Her to the O</div>
+        <div class="draggable-item" id="item3" draggable="true" ondragstart="drag(event)">Grandson</div>
+        <div class="draggable-item" id="item4" draggable="true" ondragstart="drag(event)">Crazy Story</div>
+        <div class="draggable-item" id="item5" draggable="true" ondragstart="drag(event)">Levon James</div>
+        <div class="draggable-item" id="item6" draggable="true" ondragstart="drag(event)">Why He Told</div>
+        <div class="draggable-item" id="item7" draggable="true" ondragstart="drag(event)">Lil Durk</div>
+        <div class="draggable-item" id="item8" draggable="true" ondragstart="drag(event)">All These Niggas</div>
+        <div class="draggable-item" id="item9" draggable="true" ondragstart="drag(event)">OTF</div>
+        <div class="draggable-item" id="item10" draggable="true" ondragstart="drag(event)">Back Again</div>
+        <div class="draggable-item" id="item11" draggable="true" ondragstart="drag(event)">What It's Like</div>
+        <div class="draggable-item" id="item12" draggable="true" ondragstart="drag(event)">Polo G</div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="categories-container">
+        <!-- Category 1 -->
+        <div class="category-box">
+            <div class="category-title">Albums / Tapes</div>
+            <div class="category-drop-zone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        </div>
+        <!-- Category 2 -->
+        <div class="category-box">
+            <div class="category-title">Hit Songs</div>
+            <div class="category-drop-zone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        </div>
+        <!-- Category 3 -->
+        <div class="category-box">
+            <div class="category-title">Collaborations</div>
+            <div class="category-drop-zone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        </div>
+        <!-- Category 4 -->
+        <div class="category-box">
+            <div class="category-title">Crews & Labels</div>
+            <div class="category-drop-zone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">Back to Portfolio</a>
+
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var draggedElement = document.getElementById(data);
+            
+            let zone = ev.target.closest('.category-drop-zone');
+            if (zone) {
+                zone.appendChild(draggedElement);
+            }
+        }
+
+        function dropToPool(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var draggedElement = document.getElementById(data);
+            
+            let pool = document.getElementById('pool');
+            if (pool) {
+                pool.appendChild(draggedElement);
+            }
+        }
+    </script>
+</body>
+</html>
