@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Graphics Drill</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(to bottom right, #f4f9f5, #e3f1e7);
+            color: #174b2d;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-container {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #114225;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #174b2d;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .section-container {
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .shape-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #114225;
+            margin-bottom: 12px;
+        }
+
+        .shape-card {
+            background: #ffffff;
+            border: 2px solid #c7e5d1;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #114225;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .back-link:hover {
+            color: #218448;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1>SVG Graphics Drill</h1>
+        <div class="subtitle">Demonstrating vector rectangles, custom stars, gradients, triangles, and diamonds.</div>
+    </div>
+
+    <!-- 1. Rectangle -->
+    <div class="section-container">
+        <div class="shape-title">Rectangle</div>
+        <div class="shape-card">
+            <svg width="220" height="120" viewBox="0 0 220 120">
+                <rect x="10" y="10" width="200" height="100" fill="blue" stroke="black" stroke-width="4"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- 2. Star -->
+    <div class="section-container">
+        <div class="shape-title">Star</div>
+        <div class="shape-card">
+            <svg width="180" height="180" viewBox="0 0 100 100">
+                <polygon points="50,5 61,38 95,38 67,58 78,91 50,71 22,91 33,58 5,38 39,38" fill="Red" stroke="White" stroke-width="3"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- 3. Oblong -->
+    <div class="section-container">
+        <div class="shape-title">Oblong</div>
+        <div class="shape-card">
+            <svg width="260" height="160" viewBox="0 0 260 160">
+                <defs>
+                    <radialGradient id="grad1" cx="30%" cy="50%" r="60%">
+                        <stop offset="0%" stop-color="black" />
+                        <stop offset="100%" stop-color="Green" />
+                    </radialGradient>
+                </defs>
+                <ellipse cx="130" cy="80" rx="110" ry="65" fill="url(#grad1)"/>
+                <text x="130" y="88" fill="white" font-size="24" font-weight="bold" text-anchor="middle">
+            </svg>
+        </div>
+    </div>
+
+    <!-- 4. Triangle (New Addition) -->
+    <div class="section-container">
+        <div class="shape-title">Triangle</div>
+        <div class="shape-card">
+            <svg width="180" height="160" viewBox="0 0 100 100">
+                <polygon points="50,15 90,85 10,85" fill="#218448" stroke="#114225" stroke-width="3"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- 5. Diamond (New Addition) -->
+    <div class="section-container">
+        <div class="shape-title">Diamond</div>
+        <div class="shape-card">
+            <svg width="180" height="160" viewBox="0 0 100 100">
+                <polygon points="50,10 90,50 50,90 10,50" fill="#a3d9b1" stroke="#218448" stroke-width="3"/>
+            </svg>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">&larr; Home</a>
+
+</body>
+</html>
