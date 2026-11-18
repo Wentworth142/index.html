@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Von Animation Effects</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #fcf4f4;
+            color: #222;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .effect-box {
+            border: 2px solid #cc0000;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .effect-title {
+            color: #cc0000;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .effect-text {
+            font-size: 16px;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .effect-btn {
+            background-color: #ffffff;
+            border: 2px solid #cc0000;
+            color: #cc0000;
+            padding: 8px 18px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            margin: 0 4px;
+        }
+
+        .effect-btn:hover {
+            background-color: #cc0000;
+            color: white;
+        }
+
+        .highlight-title {
+            color: #cc0000;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .badge-box {
+            background-color: #cc0000;
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px auto;
+            max-width: 300px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #cc0000;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- BOX 1: Fade Toggle -->
+        <div class="effect-box" id="box1">
+            <div id="fadeTarget" style="font-weight: bold; margin-bottom: 10px; color: #555;">King Von Legacy</div>
+            <button class="effect-btn" onclick="toggleFade()">Fade Toggle</button>
+        </div>
+
+        <!-- BOX 2: Slide Up / Hide -->
+        <div class="effect-box" id="box2">
+            <div class="effect-title" id="slideTitle">Hide</div>
+            <button class="effect-btn" onclick="slideToggle()">Slide up</button>
+        </div>
+
+        <!-- BOX 3: Click Me -->
+        <div class="effect-box">
+            <div class="effect-title">O'Block</div>
+            <button class="effect-btn" onclick="alert('Welcome to O-Block! Rest in Peace King Von.')">Click me !</button>
+        </div>
+
+        <!-- BOX 4: Fade Out / Fade In -->
+        <div class="effect-box">
+            <div class="highlight-title" id="mrTitle">Mr.</div>
+            <div class="effect-text">Grandson</div>
+            <div>
+                <button class="effect-btn" onclick="fadeOut()">Fade out</button>
+                <button class="effect-btn" onclick="fadeIn()">Fade in</button>
+            </div>
+        </div>
+
+    <script>
+        // Box 1 Fade Toggle
+        function toggleFade() {
+            const target = document.getElementById('fadeTarget');
+            if (target.style.opacity === '0') {
+                target.style.opacity = '1';
+                target.style.transition = 'opacity 0.4s';
+            } else {
+                target.style.opacity = '0';
+                target.style.transition = 'opacity 0.4s';
+            }
+        }
+
+        // Box 2 Slide Up / Hide
+        function slideToggle() {
+            const title = document.getElementById('slideTitle');
+            if (title.style.display === 'none') {
+                title.style.display = 'block';
+            } else {
+                title.style.display = 'none';
+            }
+        }
+
+        // Box 4 Fade Out / Fade In
+        function fadeOut() {
+            document.getElementById('mrTitle').style.opacity = '0.2';
+        }
+
+        function fadeIn() {
+            document.getElementById('mrTitle').style.opacity = '1';
+        }
+    </script>
+</body>
+</html>
