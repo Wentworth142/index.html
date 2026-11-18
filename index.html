@@ -317,7 +317,8 @@
 
                 <img src="images/king-von.jpg"
                      alt="King Von"
-                     class="gallery-picture">
+                     class="gallery-picture"
+                     onerror="this.src='https://via.placeholder.com/350?text=King+Von';">
             </div>
         </section>
 
@@ -327,25 +328,16 @@
                 <h1>My Portfolio</h1>
 
                 <div class="portfolio-grid">
-
-                    <a href="#" class="portfolio-button"
-                       onclick="showPage('calculator'); return false;">
-                        Sample Calculator
-                    </a>
-
-                    <a href="DiscountCalculator.html" class="portfolio-button">
-                        Discount Calculator
-                    </a>
-
-                    <a href="FormElements.html" class="portfolio-button">
-                        Form Elements
-                    </a>
-
-                    <a href="ClassSchedule.html" class="portfolio-button">
-                        Class Schedule
-                    </a>
-
-
+                    <a href="SampleCalculator.html" class="portfolio-button">Sample Calculator</a>
+                    <a href="DiscountCalculator.html" class="portfolio-button">Discount Calculator</a>
+                    <a href="FormElements.html" class="portfolio-button">Form Elements</a>
+                    <a href="ClassSchedule.html" class="portfolio-button">Class Schedule</a>
+                    <a href="ClassScheduleStyle.html" class="portfolio-button">Class Schedule Style</a>
+                    <a href="MyPhotoGallery.html" class="portfolio-button">My Photo Gallery</a>
+                    <a href="Login.html" class="portfolio-button">Login Logic</a>
+                    <a href="Logic.html" class="portfolio-button">Login</a>
+                    <a href="SaveGrades.html" class="portfolio-button">Grades</a>
+                    <a href="Canvas.html" class="portfolio-button">Canvas Tree</a>
                 </div>
             </div>
         </section>
@@ -354,109 +346,32 @@
         <section id="contact" class="page">
             <div class="container">
                 <h1>Contact Me</h1>
-                <p>I really someone contacting me</p>
+                <p>Get in touch with me through my channels.</p>
             </div>
-        </section>
-
-        <!-- SAMPLE CALCULATOR -->
-        <section id="calculator" class="page sample-calculator-page">
-
-            <h1>Sample Calculator</h1>
-
-            <p class="student-info">
-                Wentworth Dale G. Cambel<br>
-                12-Cooper
-            </p>
-
-            <div class="calculator">
-                <h2>Addition Calculator</h2>
-
-                <form id="calculatorForm">
-                    <div class="form-content">
-
-                        <div class="form-row">
-                            <label for="firstNumber">First Number:</label>
-                            <input
-                                type="number"
-                                id="firstNumber"
-                                step="any"
-                                placeholder="Enter first number"
-                                required
-                            >
-                        </div>
-
-                        <div class="form-row">
-                            <label for="secondNumber">Second Number:</label>
-                            <input
-                                type="number"
-                                id="secondNumber"
-                                step="any"
-                                placeholder="Enter second number"
-                                required
-                            >
-                        </div>
-
-                    </div>
-
-                    <div class="buttons">
-                        <button type="submit" class="compute">Compute</button>
-                        <button type="reset" class="reset">Reset</button>
-                    </div>
-                </form>
-
-                <p id="result" aria-live="polite"></p>
-            </div>
-
-            <a class="calculator-back" href="#"
-               onclick="showPage('portfolio'); return false;">
-                ← Back to Portfolio
-            </a>
-
         </section>
 
     </main>
 
     <script>
-        function showPage(pageId, clickedLink) {
+        function showPage(pageId, element) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
 
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-                page.scrollTop = 0;
-            });
+            // Show target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
 
-            document.getElementById(pageId).classList.add('active');
-
-            if (clickedLink && clickedLink.closest('.navbar')) {
-                document.querySelectorAll('.navbar a').forEach(link => {
-                    link.classList.remove('active');
-                });
-
-                clickedLink.classList.add('active');
+            // Update active class on navbar links
+            const navLinks = document.querySelectorAll('.navbar a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            if (element) {
+                element.classList.add('active');
             }
         }
-
-        // SAMPLE CALCULATOR FUNCTION
-        const form = document.getElementById("calculatorForm");
-        const result = document.getElementById("result");
-
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const first = Number(
-                document.getElementById("firstNumber").value
-            );
-
-            const second = Number(
-                document.getElementById("secondNumber").value
-            );
-
-            result.textContent = "Result: " + (first + second);
-        });
-
-        form.addEventListener("reset", function() {
-            result.textContent = "";
-        });
     </script>
-
 </body>
 </html>
