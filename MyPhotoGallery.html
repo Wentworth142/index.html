@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Photo Gallery</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    text-align: center;
+    margin: 0;
+    padding: 40px 15px;
+}
+
+h1 {
+    color: #243b64;
+}
+
+.carousel {
+    max-width: 650px;
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #222;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+}
+
+button {
+    background: #243b64;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4169a1;
+}
+
+.dots {
+    margin: 15px;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: #aaa;
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: #243b64;
+}
+
+@media (max-width: 600px) {
+    .slide img {
+        height: 250px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>My Photo Gallery</h1>
+
+<div class="carousel" id="carousel">
+
+    <div class="slide">
+    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477" alt="Anime 1">
+</div>
+
+<div class="slide">
+    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477" alt="Anime 2">
+</div>
+
+<div class="slide">
+    <img src="https://images.unsplash.com/photo-1614583225154-5fcdda07019e" alt="Anime 3">
+</div>
+
+<div class="slide">
+    <img src="https://images.unsplash.com/photo-1601850494422-3cf14624b0b3" alt="Video game 4">
+</div>
+
+<button id="prev">Previous</button>
+<button id="next">Next</button>
+
+<div class="dots" id="dots"></div>
+
+<script>
+$(document).ready(function() {
+
+    let current = 0;
+    let slides = $(".slide");
+    let total = slides.length;
+
+    for (let i = 0; i < total; i++) {
+        $("#dots").append('<span class="dot"></span>');
+    }
+
+    let dots = $(".dot");
+
+    function showSlide(index) {
+        current = (index + total) % total;
+
+        slides.stop(true, true).fadeOut(400);
+        slides.eq(current).stop(true, true).fadeIn(400);
+
+        dots.removeClass("active");
+        dots.eq(current).addClass("active");
+    }
+
+    $("#next").click(function() {
+        showSlide(current + 1);
+    });
+
+    $("#prev").click(function() {
+        showSlide(current - 1);
+    });
+
+    dots.click(function() {
+        showSlide($(this).index());
+    });
+
+    let timer = setInterval(function() {
+        showSlide(current + 1);
+    }, 3000);
+
+    $("#carousel").hover(
+        function() {
+            clearInterval(timer);
+        },
+        function() {
+            timer = setInterval(function() {
+                showSlide(current + 1);
+            }, 3000);
+        }
+    );
+
+    $(document).keydown(function(event) {
+        if (event.key === "ArrowRight") {
+            showSlide(current + 1);
+        }
+
+        if (event.key === "ArrowLeft") {
+            showSlide(current - 1);
+        }
+    });
+
+    showSlide(0);
+
+});
+</script>
+
+</body>
+</html>
