@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Wentworth Dale G. Cambel - Portfolio</title>
 
     <style>
         * {
@@ -14,20 +14,22 @@
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(to bottom right, #edf6ff, #cfe4ff);
+            background: linear-gradient(to bottom right, #f4f9f5, #e3f1e7);
             min-height: 100vh;
-            color: #104b9e;
-            overflow: hidden;
+            color: #174b2d;
+            display: flex;
+            flex-direction: column;
         }
 
         .navbar {
             min-height: 56px;
-            background-color: #104b9e;
-            border-top: 5px solid #092f70;
-            border-bottom: 6px solid #082c68;
+            background-color: #114225;
+            border-top: 5px solid #092514;
+            border-bottom: 6px solid #071f10;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-shrink: 0;
         }
 
         .navbar ul {
@@ -53,14 +55,17 @@
 
         .navbar a:hover,
         .navbar a.active {
-            background-color: #237bd3;
+            background-color: #237a46;
+        }
+
+        main {
+            flex: 1;
+            position: relative;
         }
 
         .page {
             display: none;
-            height: calc(100vh - 56px);
-            overflow-y: auto;
-            padding: 70px 20px;
+            padding: 40px 20px 60px 20px;
             text-align: center;
         }
 
@@ -70,29 +75,80 @@
 
         .container {
             width: 100%;
-            max-width: 1068px;
+            max-width: 900px;
             margin: auto;
         }
 
         h1 {
-            color: #0645a1;
-            font-size: 36px;
+            color: #114225;
+            font-size: 34px;
+            margin-bottom: 5px;
         }
 
-        h2 {
-            color: #104b9e;
+        .subtitle {
+            color: #c05621;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 25px;
         }
 
-        p {
-            color: #31577f;
-            line-height: 1.7;
+        /* ABOUT BOX STYLES */
+        .about-wrapper {
+            max-width: 750px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .about-box-container {
+            background: #eaf3ed;
+            border: 2px solid #218448;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+        }
+
+        .about-header {
+            background: #114225;
+            color: white;
+            padding: 14px 18px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+
+        .about-header:hover {
+            background: #175a33;
+        }
+
+        .about-body {
+            padding: 20px;
+            color: #174b2d;
+            display: none;
+            border-top: 2px solid #218448;
+            background: #eaf3ed;
+        }
+
+        .about-body.open {
+            display: block;
+        }
+
+        .about-body p {
+            margin: 0;
+            line-height: 1.6;
+            font-size: 15px;
         }
 
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 16px;
-            margin-top: 35px;
+            margin-top: 25px;
         }
 
         .portfolio-button {
@@ -102,10 +158,10 @@
             align-items: center;
             text-align: center;
             padding: 12px 8px;
-            background-color: #e2f1ff;
-            border: 3px double #2878d5;
+            background-color: #e3f2e8;
+            border: 3px double #218448;
             border-radius: 9px;
-            color: #0645a1;
+            color: #114225;
             font-size: 14px;
             font-weight: bold;
             text-decoration: none;
@@ -113,147 +169,96 @@
         }
 
         .portfolio-button:hover {
-            background-color: #c5e2ff;
+            background-color: #c7e5d1;
             transform: translateY(-2px);
         }
 
-        /* King Von Gallery Picture */
+        /* GALLERY PICTURE STYLING */
         .gallery-picture {
-            width: 350px;
-            max-width: 100%;
-            height: 350px;
-            object-fit: cover;
-            border: 4px solid #2878d5;
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            max-height: 520px;
+            object-fit: contain;
+            border: 4px solid #218448;
             border-radius: 12px;
             margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: #fff;
         }
 
-        /* SAMPLE CALCULATOR */
-        .sample-calculator-page {
-            background: #edf6ef;
-            font-family: Arial, sans-serif;
-            color: #174b2d;
-            padding: 30px 15px;
+        /* SITE FOOTER */
+        .site-footer {
+            background-color: #eaf3ed;
+            border-top: 2px solid #c7e5d1;
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-left {
+            max-width: 650px;
             text-align: left;
         }
 
-        .sample-calculator-page h1 {
-            text-align: center;
-            color: #176b3a;
-            margin-bottom: 25px;
-            font-size: 32px;
+        .footer-left h3 {
+            color: #114225;
+            font-size: 15px;
+            margin: 0 0 4px 0;
         }
 
-        .student-info {
-            text-align: center;
-            color: #176b3a;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
-
-        .calculator {
-            max-width: 470px;
-            margin: auto;
-            background: white;
-            border: 2px solid #287545;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(20, 80, 40, 0.12);
-        }
-
-        .calculator h2 {
+        .footer-left p {
+            color: #174b2d;
+            font-size: 12px;
             margin: 0;
-            padding: 20px;
-            text-align: center;
-            background: #176b3a;
-            color: white;
-            font-size: 22px;
+            line-height: 1.4;
         }
 
-        .form-content {
-            padding: 22px;
+        .footer-right {
+            text-align: right;
         }
 
-        .form-row {
-            margin-bottom: 20px;
+        .footer-right h4 {
+            color: #114225;
+            font-size: 14px;
+            margin: 0 0 4px 0;
         }
 
-        .calculator label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #174b2d;
-        }
-
-        .calculator input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #82b694;
-            border-radius: 6px;
-            font-size: 15px;
-        }
-
-        .calculator input:focus {
-            outline: 2px solid #b8dfc3;
-            border-color: #176b3a;
-        }
-
-        .buttons {
+        .social-icons {
             display: flex;
-            justify-content: center;
-            gap: 14px;
-            padding: 18px;
-            background: #f2f8f3;
-            border-top: 1px solid #d4e7d8;
+            gap: 16px;
+            align-items: center;
         }
 
-        .calculator button {
-            min-width: 110px;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            cursor: pointer;
-        }
-
-        .compute {
-            background: #218448;
-            color: white;
-        }
-
-        .compute:hover {
-            background: #176b3a;
-        }
-
-        .reset {
-            background: #dcebe0;
-            color: #174b2d;
-        }
-
-        .reset:hover {
-            background: #c6dfcd;
-        }
-
-        #result {
-            padding: 0 20px 20px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            overflow-wrap: anywhere;
-            color: #174b2d;
-        }
-
-        .calculator-back {
-            display: block;
-            width: fit-content;
-            margin: 24px auto 0;
-            color: #176b3a;
-            font-weight: bold;
+        .social-icons a {
+            color: #114225;
             text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.2s, transform 0.2s;
         }
 
-        .calculator-back:hover {
-            text-decoration: underline;
+        .social-icons a:hover {
+            color: #218448;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom-bar {
+            background-color: #071f10;
+            color: white;
+            text-align: center;
+            font-size: 11px;
+            padding: 6px;
         }
 
         @media (max-width: 760px) {
@@ -268,6 +273,15 @@
             .navbar a {
                 padding: 8px;
                 font-size: 12px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-right {
+                text-align: left;
             }
         }
 
@@ -292,20 +306,49 @@
     </nav>
 
     <main>
-
         <!-- HOME -->
         <section id="home" class="page active">
             <div class="container">
                 <h1>Wentworth Dale G. Cambel</h1>
-                <p>12-Cooper</p>
+                <div class="subtitle">12 - COOPER</div>
             </div>
         </section>
 
         <!-- ABOUT -->
         <section id="about" class="page">
             <div class="container">
-                <h1>About Me</h1>
-                <p>Nothing, I'm just a lazy person who likes playing games and livestreaming.</p>
+                <div class="about-wrapper">
+                    <!-- Box 1: About Me -->
+                    <div class="about-box-container">
+                        <div class="about-header" onclick="toggleBox(this)">
+                            <span class="arrow">▾</span> About Me
+                        </div>
+                        <div class="about-body open">
+                            <p>Nothing I'm just a normal guy who love only freedom and Who love sleeping, exploring and playing online games</p>
+                        </div>
+                    </div>
+
+                    <!-- Box 2: Favorite Artist -->
+                    <div class="about-box-container">
+                        <div class="about-header" onclick="toggleBox(this)">
+                            <span class="arrow">▸</span> Favorite Artist
+                        </div>
+                        <div class="about-body">
+                            <p>My Favorite artist is King Von because I love his music, unique style, storytelling, and the way he expresses himself through songs.</p>
+                        </div>
+                    </div>
+
+                    <!-- Box 3: Favorite Games -->
+                    <div class="about-box-container">
+                        <div class="about-header" onclick="toggleBox(this)">
+                            <span class="arrow">▸</span> Favorite Games
+                        </div>
+                        <div class="about-body">
+                            <p>My Favorite games are Roblox and Valorant because I enjoy playing with friends, exploring different games, competing and having fun during my free time.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -313,12 +356,11 @@
         <section id="gallery" class="page">
             <div class="container">
                 <h1>My Gallery</h1>
-                <p>Welcome to my photo gallery.</p>
+                <p>Welcome to my photo gallery</p>
 
-                <img src="images/king-von.jpg"
-                     alt="King Von"
-                     class="gallery-picture"
-                     onerror="this.src='https://via.placeholder.com/350?text=King+Von';">
+                <img src="92331fb7-f287-47b4-8566-a55eb58fce79.jpg"
+                     alt="Wentworth Dale G. Cambel"
+                     class="gallery-picture">
             </div>
         </section>
 
@@ -338,6 +380,13 @@
                     <a href="Logic.html" class="portfolio-button">Login</a>
                     <a href="SaveGrades.html" class="portfolio-button">Grades</a>
                     <a href="Canvas.html" class="portfolio-button">Canvas Tree</a>
+                    <a href="NETDeveloperProfile.html" class="portfolio-button">NETDeveloperProfile</a>
+                    <a href="DragAndDrop.html" class="portfolio-button">DragAndDrop</a>
+                    <a href="KingVonGame.html" class="portfolio-button">KingVonGame</a>
+                    <a href="KingVonBio.html" class="portfolio-button">Tab</a>
+                    <a href="KingVonEffects.html" class="portfolio-button">4 jquery</a>
+                    <a href="GridPage.html" class="portfolio-button">Grid</a>
+                    <a href="SvgGraphics.html" class="portfolio-button">Shape</a>
                 </div>
             </div>
         </section>
@@ -345,12 +394,32 @@
         <!-- CONTACT -->
         <section id="contact" class="page">
             <div class="container">
-                <h1>Contact Me</h1>
-                <p>Get in touch with me through my channels.</p>
+                <h1>Contacts</h1>
+                <p>Get in touch with me through my channels and social media.</p>
             </div>
         </section>
-
     </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3>Stay Connected!</h3>
+                <p>"Thank you for visiting my website. Connect with me on social media or reach out via email for collaborations and inquiries. Your support and feedback are greatly appreciated."</p>
+            </div>
+            <div class="footer-right">
+                <h4>Follow Me</h4>
+                <div class="social-icons">
+                    <a href="#" target="_blank" title="Facebook">f</a>
+                    <a href="#" target="_blank" title="Media">▶</a>
+                    <a href="#" target="_blank" title="LinkedIn">in</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            ©2026 All rights Reserved | Designed by : Jujuber
+        </div>
+    </footer>
 
     <script>
         function showPage(pageId, element) {
@@ -370,6 +439,23 @@
             
             if (element) {
                 element.classList.add('active');
+            }
+
+            // Scroll window back to top when switching pages
+            window.scrollTo(0, 0);
+        }
+
+        function toggleBox(headerElement) {
+            const body = headerElement.nextElementSibling;
+            const arrow = headerElement.querySelector('.arrow');
+            const isOpen = body.classList.contains('open');
+
+            if (isOpen) {
+                body.classList.remove('open');
+                arrow.textContent = '▸';
+            } else {
+                body.classList.add('open');
+                arrow.textContent = '▾';
             }
         }
     </script>
