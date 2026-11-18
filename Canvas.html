@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Tree Canvas</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #1a1a2e; /* Festive night background */
+        }
+        #xmasCanvas {
+            border: solid 2px #4ecca3;
+            background-color: #0f3460;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas height="500" width="800" id="xmasCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("xmasCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // 1. Draw Tree Trunk
+        ctx.beginPath();
+        ctx.rect(370, 360, 60, 80);
+        ctx.fillStyle = "#8B5A2B"; // Brown wood color
+        ctx.fill();
+        ctx.strokeStyle = "#5C4033";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        // 2. Draw Bottom Tree Layer
+        ctx.beginPath();
+        ctx.moveTo(400, 180);
+        ctx.lineTo(250, 380);
+        ctx.lineTo(550, 380);
+        ctx.closePath();
+        ctx.fillStyle = "#2e8b57"; // Sea green
+        ctx.fill();
+        ctx.stroke();
+
+        // 3. Draw Middle Tree Layer
+        ctx.beginPath();
+        ctx.moveTo(400, 120);
+        ctx.lineTo(280, 270);
+        ctx.lineTo(520, 270);
+        ctx.closePath();
+        ctx.fillStyle = "#3cb371"; // Medium sea green
+        ctx.fill();
+        ctx.stroke();
+
+        // 4. Draw Top Tree Layer
+        ctx.beginPath();
+        ctx.moveTo(400, 60);
+        ctx.lineTo(320, 170);
+        ctx.lineTo(480, 170);
+        ctx.closePath();
+        ctx.fillStyle = "#2e8b57";
+        ctx.fill();
+        ctx.stroke();
+
+        // 5. Draw Star on Top
+        function drawStar(cx, cy, spikes, outerRadius, innerRadius) {
+            let rot = Math.PI / 2 * 3;
+            let x = cx;
+            let y = cy;
+            let step = Math.PI / spikes;
+
+            ctx.beginPath();
+            ctx.moveTo(cx, cy - outerRadius);
+            for (let i = 0; i < spikes; i++) {
+                x = cx + Math.cos(rot) * outerRadius;
+                y = cy + Math.sin(rot) * outerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+
+                x = cx + Math.cos(rot) * innerRadius;
+                y = cy + Math.sin(rot) * innerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+            }
+            ctx.lineTo(cx, cy - outerRadius);
+            ctx.closePath();
+            ctx.fillStyle = "#ffd700"; // Gold
+            ctx.fill();
+            ctx.strokeStyle = "#cca600";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+        drawStar(400, 35, 5, 20, 8);
+
+        // 6. Draw Ornaments (Baubles)
+        const ornaments = [
+            {x: 400, y: 130, color: "#ff4757"}, // Red
+            {x: 360, y: 200, color: "#1e90ff"}, // Blue
+            {x: 430, y: 220, color: "#ffa502"}, // Orange
+            {x: 330, y: 310, color: "#ff4757"}, // Red
+            {x: 400, y: 290, color: "#9b59b6"}, // Purple
+            {x: 470, y: 330, color: "#1e90ff"}  // Blue
+        ];
+
+        ornaments.forEach(orn => {
+            ctx.beginPath();
+            ctx.arc(orn.x, orn.y, 10, 0, Math.PI * 2);
+            ctx.fillStyle = orn.color;
+            ctx.fill();
+            ctx.strokeStyle = "#fff";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        });
+
+        // 7. Draw "Merry Christmas" Text at the bottom
+        ctx.font = "bold 32px 'Segoe UI', Arial, sans-serif";
+        ctx.fillStyle = "#ffffff";
+        ctx.textAlign = "center";
+        ctx.shadowColor = "#ff4757";
+        ctx.shadowBlur = 10;
+        ctx.fillText("Merry Christmas", canvas.width / 2, 470);
+    </script>
+</body>
+</html>
