@@ -2,180 +2,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Photo Gallery</title>
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-<style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
-    text-align: center;
-    margin: 0;
-    padding: 40px 15px;
-}
-
-h1 {
-    color: #243b64;
-}
-
-.carousel {
-    max-width: 650px;
-    margin: 30px auto;
-    overflow: hidden;
-    border-radius: 12px;
-    background: #222;
-}
-
-.slide {
-    display: none;
-    width: 100%;
-}
-
-.slide img {
-    width: 100%;
-    height: 380px;
-    object-fit: cover;
-    display: block;
-}
-
-button {
-    background: #243b64;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    margin: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #4169a1;
-}
-
-.dots {
-    margin: 15px;
-}
-
-.dot {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    background: #aaa;
-    border-radius: 50%;
-    margin: 5px;
-    cursor: pointer;
-}
-
-.dot.active {
-    background: #243b64;
-}
-
-@media (max-width: 600px) {
-    .slide img {
-        height: 250px;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Photo Gallery</title>
+    <link rel="stylesheet" href="example.css">
 </head>
-
 <body>
 
-<h1>My Photo Gallery</h1>
+    <!-- Home Link -->
+    <a href="portfolio.html">Home</a>
 
-<div class="carousel" id="carousel">
+    <h1>My Photo Gallery</h1>
 
-    <div class="slide">
-    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477" alt="Anime 1">
-</div>
+    <div class="carousel" id="carousel">
+        <div class="slides">
+            <figure class="slide">
+                <img src="9f28d199-d98a-4ea2-914a-671267e818ed.jpg" alt="Describe image 1">
+                <figcaption>Caption for image 1</figcaption>
+            </figure>
+            <figure class="slide">
+                <img src="346fc6ff-d6fc-4a77-b946-a43cd9143ae1.jpg" alt="Describe image 2">
+                <figcaption>Caption for image 2</figcaption>
+            </figure>
+            <figure class="slide">
+                <img src="c688cadd-66a0-4f30-b281-44753c5b841d.jpg" alt="Describe image 3">
+                <figcaption>Caption for image 3</figcaption>
+            </figure>
+            <figure class="slide">
+                <img src="cdd89d0e-9111-40ae-afc4-71b53ded15e1.jpg" alt="Describe image 4">
+                <figcaption>Caption for image 4</figcaption>
+            </figure>
 
-<div class="slide">
-    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477" alt="Anime 2">
-</div>
+            <!-- Navigation Buttons -->
+            <button class="nav prev" type="button" aria-label="Previous slide">&#10094;</button>
+            <button class="nav next" type="button" aria-label="Next slide">&#10095;</button>
+        </div>
 
-<div class="slide">
-    <img src="https://images.unsplash.com/photo-1614583225154-5fcdda07019e" alt="Anime 3">
-</div>
+        <!-- Dynamic Dots Container -->
+        <div class="dots"></div>
+    </div>
 
-<div class="slide">
-    <img src="https://images.unsplash.com/photo-1601850494422-3cf14624b0b3" alt="Video game 4">
-</div>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const $carousel = $("#carousel");
+            const $slides = $carousel.find(".slide");
+            const $dotsBox = $carousel.find(".dots");
+            const total = $slides.length;
+            const FADE_TIME = 500;
+            const DELAY = 4000;
+            let current = 0;
+            let timer = null;
 
-<button id="prev">Previous</button>
-<button id="next">Next</button>
+            $slides.hide().eq(0).show();
 
-<div class="dots" id="dots"></div>
+            $slides.each(function (i) {
+                $("<button>")
+                    .attr({ type: "button", "aria-label": "Go to slide " + (i + 1) })
+                    .addClass("dot" + (i === 0 ? " active" : ""))
+                    .data("index", i)
+                    .appendTo($dotsBox);
+            });
+            const $dots = $dotsBox.find(".dot");
 
-<script>
-$(document).ready(function() {
+            function showSlide(index) {
+                if (index === current) return;
+                $slides.eq(current).stop(true, true).fadeOut(FADE_TIME);
+                $slides.eq(index).stop(true, true).fadeIn(FADE_TIME);
+                $dots.removeClass("active").eq(index).addClass("active");
+                current = index;
+            }
 
-    let current = 0;
-    let slides = $(".slide");
-    let total = slides.length;
+            function nextSlide() { showSlide((current + 1) % total); }
+            function prevSlide() { showSlide((current - 1 + total) % total); }
 
-    for (let i = 0; i < total; i++) {
-        $("#dots").append('<span class="dot"></span>');
-    }
+            $carousel.on("click", ".next", nextSlide);
+            $carousel.on("click", ".prev", prevSlide);
+            $dotsBox.on("click", ".dot", function () {
+                showSlide($(this).data("index"));
+            });
 
-    let dots = $(".dot");
+            function startAutoplay() {
+                clearInterval(timer);
+                timer = setInterval(nextSlide, DELAY);
+            }
+            function stopAutoplay() {
+                clearInterval(timer);
+            }
 
-    function showSlide(index) {
-        current = (index + total) % total;
+            $carousel.on("mouseenter", stopAutoplay)
+                     .on("mouseleave", startAutoplay);
+            startAutoplay();
 
-        slides.stop(true, true).fadeOut(400);
-        slides.eq(current).stop(true, true).fadeIn(400);
-
-        dots.removeClass("active");
-        dots.eq(current).addClass("active");
-    }
-
-    $("#next").click(function() {
-        showSlide(current + 1);
-    });
-
-    $("#prev").click(function() {
-        showSlide(current - 1);
-    });
-
-    dots.click(function() {
-        showSlide($(this).index());
-    });
-
-    let timer = setInterval(function() {
-        showSlide(current + 1);
-    }, 3000);
-
-    $("#carousel").hover(
-        function() {
-            clearInterval(timer);
-        },
-        function() {
-            timer = setInterval(function() {
-                showSlide(current + 1);
-            }, 3000);
-        }
-    );
-
-    $(document).keydown(function(event) {
-        if (event.key === "ArrowRight") {
-            showSlide(current + 1);
-        }
-
-        if (event.key === "ArrowLeft") {
-            showSlide(current - 1);
-        }
-    });
-
-    showSlide(0);
-
-});
-</script>
+            $(document).on("keydown", function (event) {
+                if (event.key === "ArrowRight") {
+                    nextSlide();
+                } else if (event.key === "ArrowLeft") {
+                    prevSlide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
 
 </body>
 </html>
