@@ -6,7 +6,7 @@
     <title>Wentworth Dale G. Cambel - Portfolio</title>
 
     <style>
-* {
+        * {
             box-sizing: border-box;
         }
 
@@ -316,6 +316,47 @@
             transform: translateY(-2px);
         }
 
+        /* CONTACT PAGE STYLES */
+        .contact-cards-container {
+            max-width: 800px;
+            margin: 30px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .contact-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .contact-label {
+            font-size: 11px;
+            font-weight: bold;
+            color: #3b533f;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .contact-value {
+            font-size: 16px;
+            color: #111111;
+        }
+
+        .contact-value a {
+            color: #0000ee;
+            text-decoration: none;
+        }
+
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+
         /* SITE FOOTER */
         .site-footer {
             background-color: #eaf3ed;
@@ -564,7 +605,6 @@
                     <a href="KingVonEffects.html" class="portfolio-button">4 jquery</a>
                     <a href="GridPage.html" class="portfolio-button">Grid</a>
                     <a href="SvgGraphics.html" class="portfolio-button">Shape</a>
-                    <a href="flex.html" class="portfolio-button">Flex</a>
                 </div>
             </div>
         </section>
@@ -572,8 +612,30 @@
         <!-- CONTACT -->
         <section id="contact" class="page">
             <div class="container">
-                <h1>Contacts</h1>
-                <p>Get in touch with me through my channels and social media.</p>
+                <h1>Contact Me</h1>
+                
+                <div class="contact-cards-container">
+                    <div class="contact-card">
+                    <div class="contact-card">
+                        <div class="contact-label">FACEBOOK</div>
+                        <div class="contact-value">Wentworth Dale Cambel</div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-label">Tiktok</div>
+                        <div class="contact-value">masondego123</div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-label">PHONE NUMBER</div>
+                        <div class="contact-value">0912 345 6789</div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-label">ADDRESS</div>
+                        <div class="contact-value">Alapan 1-A Regal Homes</div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
