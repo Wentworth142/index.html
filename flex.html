@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Flexbox Tutorial Demo</title>
+  
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: system-ui, -apple-system, sans-serif;    
+    }
+
+    .parent {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: stretch;
+      gap: 25px;
+      min-height: 360px; /* Makes the container tall enough for the cards */
+      padding: 16px;
+      border: 3px solid #000000;
+    }
+
+    .child {
+      /* Tall vertical card dimensions */
+      width: 170px;
+      min-height: 320px;
+      
+      /* Centers text horizontally near the top */
+      text-align: center;
+      padding-top: 24px;
+      padding-left: 12px;
+      padding-right: 12px;
+
+      color: #ffffff;
+      background-color: #11363c;
+      border: 1px solid #12424e;
+    }
+
+    .red {
+      background-color: #2d3912;
+      border-color: #431e1e;
+    }
+
+    .violet {
+      background-color: #192945;
+      border-color: #3a6473;
+    }
+
+    .pink {
+      background-color: #411616;
+      border-color: #a4a4a4;
+    }
+  </style>
+</head>
+<body>
+  <a href="portfolio.html">home</a>
+  <div class="parent">
+    <div class="child blue">Gemini</div>
+    <div class="child red">Chatgpt</div>
+    <div class="child violet">DeepSeek</div>
+    <div class="child pink">Grok</div>
+  </div>
+</body>
+</html>
